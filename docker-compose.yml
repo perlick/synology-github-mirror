@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  github-backup:
+    build: github-backup/ 
+    command: /github-backup/src/startup.sh
+    environment:
+      - GH_TOKEN=${GH_TOKEN}
+    volumes:
+      - ${GH_STORAGE_DIR}:/github-backup/repo_store
+  journal-log-server:
+    build: journal-log-server/ 
+    command: /journal-log-server/src/startup.sh
+    volumes:
+      - ${JOURNAL_STORAGE_DIR}:/journal-log-server/log_store
+    network_mode: host
+    #ports:
+    #  - 19532:19532
