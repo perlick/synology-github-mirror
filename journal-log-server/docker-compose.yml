@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  journal-log-server:
+    image: mperlick/journal-log-server:latest
+    command: /journal-log-server/src/startup.sh
+    volumes:
+      - ${JOURNAL_STORAGE_DIR}:/journal-log-server/log_store
+    network_mode: host
